@@ -39,4 +39,16 @@ function demographicFunct(valueReturn) {
     var sampleVal = filterID.map(val =>val.sample_values);
     sampleVal= sampleVal[0].slice(1,10);
 
+    var output_name = filterID.map(val=>val.otu_labels);
+    var names = treatbacteriaName(output_name[0]).slice(0,10);
+    console.log(otuID);
+    console.log(sampleVal);
+    console.log(output_name)
+    console.log(names);
+    
+
+
+
+
+
 }
