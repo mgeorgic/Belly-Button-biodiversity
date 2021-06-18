@@ -65,24 +65,20 @@ function demoFunct(valueReturn) {
     // Make an array to plot the data into trace and layout
     var samVal = [trace];
     Plotly.newPlot("bar", samVal, layout);
-
-    // Build metadata value chart for the Test Subject ID
-    // Append to the list starting at zero index
-    function panelgraph(valueReturn) {
-        var filterVal = data.metadata.filter(value => value.id == valueReturn);
-        
-        var panelValues = d3.select("#sample-metadata");
-        panelValues.html("");
-        panelValues.append("p").text('id: ${filterVal[0].id}');
-        panelValues.append("p").text('ethnicity: ${filterVal[0].ethnicity}');
-        panelValues.append("p").text('gender: ${filterVal[0].gender}');
-        panelValues.append("p").text('age: ${filterVal[0].age}');
-        panelValues.append("p").text('location: ${filterVal[0].location}');
-        panelValues.append("p").text('bbqtype: ${filterVal[0].bbqtype}');
-        panelValues.append("p").text('wfreq: ${filterVal[0].wfreq}');
-    }
-
-
-
-
 }
+
+// Build metadata value chart for the Test Subject ID
+// Append to the list starting at zero index
+function panelgraph(valueReturn) {
+    var filterVal = data.metadata.filter(value => value.id == valueReturn);
+        
+    var panelValues = d3.select("#sample-metadata");
+    panelValues.html("");
+    panelValues.append("p").text('id: ${filterVal[0].id}');
+    panelValues.append("p").text('ethnicity: ${filterVal[0].ethnicity}');
+    panelValues.append("p").text('gender: ${filterVal[0].gender}');
+    panelValues.append("p").text('age: ${filterVal[0].age}');
+    panelValues.append("p").text('location: ${filterVal[0].location}');
+    panelValues.append("p").text('bbqtype: ${filterVal[0].bbqtype}');
+    panelValues.append("p").text('wfreq: ${filterVal[0].wfreq}');
+    }
