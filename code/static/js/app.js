@@ -68,9 +68,8 @@ function demoFunct(valueReturn) {
 
     // Build metadata value chart for the Test Subject ID
     // Append to the list starting at zero index
-    function panelgraph(valueReturn){
-        //console.log(valueReturn);
-        var filterVal =data.metadata.filter(value => value.id == valueReturn);
+    function panelgraph(valueReturn) {
+        var filterVal = data.metadata.filter(value => value.id == valueReturn);
         
         var panelValues = d3.select("#sample-metadata");
         panelValues.html("");
