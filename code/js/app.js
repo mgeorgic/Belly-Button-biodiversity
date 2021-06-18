@@ -81,4 +81,9 @@ function panelgraph(valueReturn) {
     panelValues.append("p").text('location: ${filterVal[0].location}');
     panelValues.append("p").text('bbqtype: ${filterVal[0].bbqtype}');
     panelValues.append("p").text('wfreq: ${filterVal[0].wfreq}');
-    }
+}
+
+function bubbleGraph(valueReturn) {
+    var filterotuID = data.samples.filter(value => value.id == valueReturn)
+    var otu
+}
