@@ -6,8 +6,8 @@ function init() {
     d3.json("data/samples.json").then(starterData =>{
         data = starterData;
         var uservalues = starterData.names;
-        var userSelect = d3.select('#selDataset');
-        valueReturn.forEach(value => {
+        var userSelect = d3.select("#selDataset");
+        uservalues.forEach(value => {
             userSelect
                 .append("option")
                 .text(value)
@@ -24,7 +24,7 @@ init()
 d3.selectAll("#selDataset").on("change",plotFunctions);
 
 function plotFunctions() {
-    var valueReturn = d3.("#selDataset").node().value;
+    var valueReturn = d3.select("#selDataset").node().value;
     demoFunct(valueReturn);
     demoPlot(valueReturn);
     bubbleGraph(valueReturn);
