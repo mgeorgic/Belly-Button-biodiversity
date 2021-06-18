@@ -26,7 +26,17 @@ d3.selectAll("#selDataset").on("change",plotFunctions);
 function plotFunctions() {
     var valueReturn = d3.select("#selDataset").node().value;
     demoFunct(valueReturn);
+    panelgraph(valueReturn);
     demoPlot(valueReturn);
     bubbleGraph(valueReturn);
     gaugeGraph(valueReturn);
+}
+
+function demographicFunct(valueReturn) {
+    var filterID = data.samples.filter(value => value.id == userSelect);
+    var otuID = filterID.map(val => val.out_ids);
+    otuID =treatotuID(otuID[0].slice(0,10));
+    var sampleVal = filterID.map(val =>val.sample_values);
+    sampleVal= sampleVal[0].slice(1,10);
+
 }
