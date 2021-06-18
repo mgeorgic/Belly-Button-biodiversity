@@ -3,7 +3,7 @@
 // d3 to select the id '#selDataset' in the index.html
 var data;
 function init() {
-    d3.json("data/samples.json").then(dataInitial =>{
+    d3.json("data/samples.json").then(starterData =>{
         data = starterData;
         var uservalues = starterData.names;
         var userSelect = d3.select('#selDataset');
@@ -21,4 +21,12 @@ function init() {
 init()
 
 // Use d3 to grab the dataset selected and change it upon user's selection
-d3.selectAll("#selDataset").on("change",plotFunctions)
+d3.selectAll("#selDataset").on("change",plotFunctions);
+
+function plotFunctions() {
+    var valueReturn = d3.("#selDataset").node().value;
+    demoFunct(valueReturn);
+    demoPlot(valueReturn);
+    bubbleGraph(valueReturn);
+    gaugeGraph(valueReturn);
+}
