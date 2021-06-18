@@ -14,14 +14,14 @@ function init() {
                 .attr("value", function(){
                     return value;
                 });
-            });
         });
+    });
 }
 // initate the function to fill values for user's selection
-init()
+init();
 
 // Use d3 to grab the dataset selected and change it upon user's selection
-d3.selectAll("#selDataset").on("change",plotFunctions);
+d3.selectAll("#selDataset").on("change", plotFunctions);
 
 // Create the plot function and where to grab the values for each plot
 function plotFunctions() {
@@ -37,7 +37,7 @@ function plotFunctions() {
 // for id, otu_id, sample_values, otu_labels
 function demographicFunct(valueReturn) {
     var filterID = data.samples.filter(value => value.id == userSelect);
-    var otuID = filterID.map(val => val.out_ids);
+    var otuID = filterID.map(val => val.otu_ids);
     otuID = treatotuID(otuID[0].slice(0,10));
     var sampleVal = filterID.map(val =>val.sample_values);
     sampleVal= sampleVal[0].slice(1,10);
@@ -49,7 +49,22 @@ function demographicFunct(valueReturn) {
     console.log(output_name)
     console.log(names);
 
+    //Create the trace in order to add to bar plot containing sample values and outID's
+    var trace = {
+        x: sampleVal,
+        y: otuID,
+        text: names,
+        type: "bar",
+        orientation: 'h'
+    };
 
+    var layout = {
+        yaxis: {autorange:"reversed"}
+    };
+
+    // Make an array to plot the data into trace and layout
+    var samVal = [trace];
+    Plotly.newPlot("bar", samVal, layout);
 
 
 
