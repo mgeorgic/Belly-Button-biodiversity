@@ -28,21 +28,21 @@ function plotFunctions() {
     var valueReturn = d3.select("#selDataset").node().value;
     demoFunct(valueReturn);
     panelgraph(valueReturn);
-    demoPlot(valueReturn);
+    demoFunct(valueReturn);
     bubbleGraph(valueReturn);
     gaugeGraph(valueReturn);
 }
 
 // Create demographic map where only top ten are returned
 // for id, otu_id, sample_values, otu_labels
-function demographicFunct(valueReturn) {
-    var filterID = data.samples.filter(value => value.id == userSelect);
+function demoFunct(valueReturn) {
+    var filterID = data.samples.filter(value => value.id == valueReturn);
     var otuID = filterID.map(val => val.otu_ids);
     otuID = treatotuID(otuID[0].slice(0,10));
-    var sampleVal = filterID.map(val =>val.sample_values);
+    var sampleVal = filterID.map(val => val.sample_values);
     sampleVal= sampleVal[0].slice(1,10);
 
-    var output_name = filterID.map(val=>val.otu_labels);
+    var output_name = filterID.map(val => val.otu_labels);
     var names = treatbacteriaName(output_name[0]).slice(0,10);
     console.log(otuID);
     console.log(sampleVal);
@@ -66,6 +66,22 @@ function demographicFunct(valueReturn) {
     var samVal = [trace];
     Plotly.newPlot("bar", samVal, layout);
 
+    // Build metadata value chart for the Test Subject ID
+    // Append to the list starting at zero index
+    function panelgraph(valueReturn){
+        //console.log(valueReturn);
+        var filterVal =data.metadata.filter(value => value.id == valueReturn);
+        
+        var panelValues = d3.select("#sample-metadata");
+        panelValues.html("");
+        panelValues.append("p").text('id: ${filterVal[0].id}');
+        panelValues.append("p").text('ethnicity: ${filterVal[0].ethnicity}');
+        panelValues.append("p").text('gender: ${filterVal[0].gender}');
+        panelValues.append("p").text('age: ${filterVal[0].age}');
+        panelValues.append("p").text('location: ${filterVal[0].location}');
+        panelValues.append("p").text('bbqtype: ${filterVal[0].bbqtype}');
+        panelValues.append("p").text('wfreq: ${filterVal[0].wfreq}');
+    }
 
 
 
