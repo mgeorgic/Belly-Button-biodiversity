@@ -86,8 +86,8 @@ function renderProcess(){
             title: 'Entire OTU Sample Population',
             xaxis: {title: "OTU-ID"},
             showlegend: false,
-            height: 700,
-            width: 1300
+            height: 500,
+            width: 1000
           };
           
           Plotly.newPlot('bubble', data, layout);
@@ -117,15 +117,15 @@ function renderProcess(){
         document.getElementById('sample-metadata').innerHTML = demoinfo;
 
         // BONUS
-        var data = [
-            {
+        var bonusdata = [
+            { domain:{x:[0,1], y:[0,1]},
               title: { text: "Belly Button Washing Frequency <br> Scrubs per Week" },
               type: "indicator",
               mode: "gauge+number",
               value: wfreq,
-              delta: {reference: 380},
               gauge: {
-                axis: { range: [null, 9], ticks: 9},
+                axis: { range: [null, 9], ticks: 9, tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    ticks: "outside"},
                 steps: [
                   { range: [0, 1], color: "whitesmoke" },
                   { range: [1, 2], color: "oldlace" },
@@ -137,9 +137,10 @@ function renderProcess(){
                   { range: [7, 8], color: "olivedrab" },
                   { range: [8, 9], color: "black" }
                 ],
+               
                 threshold: {
-                  line: { color: "red", width: 3 },
-                  thickness: 0.75,
+                  line: { color: "red", width: 5 },
+                  thickness: 2,
                   value: wfreq
                 }
               }
@@ -147,7 +148,7 @@ function renderProcess(){
           ];
           
           var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
-          Plotly.newPlot('gauge', data, layout);
+          Plotly.newPlot('gauge', bonusdata, layout);
         
 
     });
